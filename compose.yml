@@ -1,9 +1,19 @@
 services:
   windows:
     container_name: windows
-    image: dockurr/windows-arm   
+    image: dockurr/windows-arm
+    volumes:
+      - /media/txurtxil/512GB/windows-arm:/storage
+      - /media/txurtxil/512GB/windows-arm/win10e.iso:/custom.iso
+      - /media/txurtxil/512GB:/shared
     environment:
-      VERSION: "win11"
+      VERSION: "win10e"
+      LANGUAGE: "Spanish"
+      DISK_SIZE: "35G"
+      RAM_SIZE: "4G"
+      CPU_CORES: "3"
+      USERNAME: "bill"
+      PASSWORD: "gates"
     devices:
       - /dev/kvm
     cap_add:
@@ -13,3 +23,4 @@ services:
       - 3389:3389/tcp
       - 3389:3389/udp
     stop_grace_period: 2m
+
